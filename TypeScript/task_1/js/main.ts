@@ -109,10 +109,27 @@ class Teacher implements TeacherInterface {
 
 // createEmployee function
 function createEmployee(salary: number | string): Director | Teacher {
-  if (typeof salary === "number" && salary < 5000) {
+  const salaryNum = typeof salary !== "number" ? parseInt(salary) : salary;
+
+  if (salaryNum <= 500) {
     return new Teacher();
   } else {
     return new Director();
   }
 }
 
+
+// part of question 6
+// function isDirector
+function isDirector(employee: Director | Teacher): boolean {
+  return employee.workFromHome() === "Working from home";
+}
+
+// function executeWork
+function executeWork(employee: Teacher | Director) {
+  if (isDirector(employee)) {
+    console.log((employee as Director).workDirectorTasks());
+  } else {
+    console.log((employee as Teacher).workTeacherTasks());
+  }
+}
