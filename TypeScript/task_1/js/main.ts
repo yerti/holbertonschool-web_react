@@ -118,7 +118,6 @@ function createEmployee(salary: number | string): Director | Teacher {
   }
 }
 
-
 // part of question 6
 // function isDirector
 function isDirector(employee: Director | Teacher): boolean {
@@ -131,5 +130,17 @@ function executeWork(employee: Teacher | Director) {
     console.log((employee as Director).workDirectorTasks());
   } else {
     console.log((employee as Teacher).workTeacherTasks());
+  }
+}
+
+// part of question 7
+
+type Subjects = "Math" | "History"; // literal type named Subjects
+
+function teachClass(todayClass: Subjects): string {
+  if (todayClass === "Math") {
+    return "Teaching Math";
+  } else if (todayClass === "History") {
+    return "Teaching History";
   }
 }
