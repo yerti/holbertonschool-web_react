@@ -1,0 +1,10 @@
+.Notifications {
+    border: 2px dashed red;
+    margin: 0 40px;
+    padding-left: 18px;
+}
+.Notifications button {
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+}
