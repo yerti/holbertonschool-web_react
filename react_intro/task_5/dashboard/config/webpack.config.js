@@ -1,67 +1,69 @@
 const path = require('path');
-const parents = path.join(__dirname, '..')
-const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
-    mode: 'development',
-    devtool: 'inline-source-map',
-    entry: './src/index.js',
-    output: {
-        path: path.join(parents + '/dist'),
-        filename: 'bundle.js'
+    output : {
+        filename: 'bundle.js',
+        path: path.resolve(__dirname, '../dist')
     },
-    devServer: {
-        port: 4000,
-    },
-
     module: {
         rules: [
             {
-                test: /\.css$/,
-                use: [
-                    'style-loader',
-                    {
-                        loader: 'css-loader',
-                        options: {
-                            sourceMap: true
-                        }
+                test: /\.(js|jsx)$/,
+                exclude: /node_modules/,
+                use: {
+                    loader: 'babel-loader',
+                    options: {
+                        presets: ['@babel/preset-env', '@babel/preset-react']
                     }
-                ]
+                }
             },
             {
-                test: /\.(png|jpg|gif|svg)$/,
+                test: /\.css$/,
+                use: ['style-loader', 'css-loader']
+            },
+            {
+                test: /\.(png|jpe?g|gif|svg)$/i,
                 use: [
                     {
-                        loader: 'url-loader',
+                        loader: 'file-loader',
                         options: {
-                            limit: 8192
+                            name: '[name].[ext]',
+                            outputPath: 'images',
                         }
                     },
                     {
                         loader: 'image-webpack-loader',
                         options: {
-                            bypassOnDev: true
-                        }
-                    }
-                ]
-            }
-        ]
+                            mozjpeg: {
+                                progressive: true,
+                                quality: 65,
+                            },
+                            optipng: {
+                                enabled: false,
+                            },
+                            pngquant: {
+                                quality: [0.65, 0.90],
+                                speed: 4,
+                            },
+                            gifsicle: {
+                                interlaced: false,
+                            },
+                        },
+                    },
+                ],
+            },
+        ],
     },
-    plugins: [
-        new HtmlWebpackPlugin({
-            template: './src/index.html'
-        }),
-    ],
     resolve: {
-        extensions: ['.js', '.jsx']
+        extensions: ['.js', '.jsx'],
     },
+    devtool: 'inline-source-map',
     devServer: {
         static: {
-            directory: path.join(parents + '/dist')
+            directory: path.resolve(__dirname, '../dist')
         },
         compress: true,
         hot: true,
         open: true,
-    }
-
+    } 
 }
