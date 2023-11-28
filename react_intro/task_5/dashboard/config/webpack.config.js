@@ -3,18 +3,17 @@ const parents = path.join(__dirname, '..')
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
+    mode: 'development',
+    devtool: 'inline-source-map',
     entry: './src/index.js',
     output: {
         path: path.join(parents + '/dist'),
         filename: 'bundle.js'
     },
+    devServer: {
+        port: 4000,
+    },
 
-    plugins: [
-        new HtmlWebpackPlugin({
-            template: './src/index.html'
-        }),
-        new HotModuleReplacementPlugin()
-    ],
     module: {
         rules: [
             {
@@ -48,15 +47,17 @@ module.exports = {
             }
         ]
     },
+    plugins: [
+        new HtmlWebpackPlugin({
+            template: './src/index.html'
+        }),
+    ],
     resolve: {
-        extensions: ['.js', '.jsx'],
+        extensions: ['.js', '.jsx']
     },
-
-    devtool: 'inline-source-map',
-
     devServer: {
         static: {
-            directory: path.resolve(__dirname, '../src')
+            directory: path.join(parents + '/dist')
         },
         compress: true,
         hot: true,
