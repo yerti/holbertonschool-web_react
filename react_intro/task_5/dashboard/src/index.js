@@ -1,14 +1,10 @@
 import React from 'react';
-import ReactDOM from 'react-dom/client';
+import ReactDOM from 'react-dom';
 import App from './App/App';
-import Notifications from './Notifications/Notifications';
+import Notification from './Notifications/Notifications'
 
-const root = ReactDOM.createRoot(document.getElementById('root'));
-root.render(
-  <React.StrictMode>
-    <div id="root-notifications">
-      <Notifications />
-    </div>
+ReactDOM.render(<div>
+    <Notification/>
     <App />
-  </React.StrictMode>
-);
+</div>, document.getElementById('root'));
+registerServiceWorker();
