@@ -19,7 +19,7 @@ describe('Test cases in Notification component', () => {
     it('renders first element', () => {
         const wrapper = shallow(<Notifications displayDrawer />);
         const listItems = wrapper.find('NotificationItem');
-        expect(listItems.first().html()).to.equal('<li data-notification-type="default">New course available</li>');
+        expect(listItems.first().html()).to.equal('<li class="notification-item" data-notification-type="default">New course available</li>');
     });
 
     // Check if the text is the same as the one provided.
@@ -29,4 +29,5 @@ describe('Test cases in Notification component', () => {
 
         expect(text).to.equal('Here is the list of notifications');
     });
+    
 })
