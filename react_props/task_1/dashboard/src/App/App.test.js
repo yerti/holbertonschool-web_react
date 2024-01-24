@@ -7,6 +7,12 @@ import Header from '../Header/Header';
 import Footer from '../Footer/Footer';
 
 describe('App Component', () => {
+  it('renders without crashing', () => {
+    const wrapper = shallow(<App />);
+    const appComponent = wrapper.find('.App');
+    expect(appComponent).toHaveLength(1);
+  });
+
   it('contains the Notifications component', () => {
     const wrapper = shallow(<App />);
     expect(wrapper.find(Notifications)).toHaveLength(1);
