@@ -1,0 +1,3 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Unitest Login Component Shallow render the Login component to verify it renders without crashing 1`] = `ShallowWrapper {}`;
